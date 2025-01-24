@@ -19,7 +19,22 @@ const createUser = async (req: Request, res: Response) => {
     });
   }
 };
+const getUsers = async (req: Request, res: Response) => {
+  try {
+    const result = await userService.getUsers();
+
+    res.json({
+      data: result,
+    });
+  } catch (error) {
+    res.json({
+      status: false,
+      message: (error as Error).message,
+    });
+  }
+};
 
 export const userController = {
   createUser,
+  getUsers,
 };
