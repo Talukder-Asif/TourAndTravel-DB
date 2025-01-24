@@ -34,7 +34,24 @@ const getUsers = async (req: Request, res: Response) => {
   }
 };
 
+const getUserById = async (req: Request, res: Response) => {
+  try {
+    const id = req.params.id;
+    const result = await userService.getUserById(id);
+
+    res.json({
+      data: result,
+    });
+  } catch (error) {
+    res.json({
+      status: false,
+      message: (error as Error).message,
+    });
+  }
+};
+
 export const userController = {
   createUser,
   getUsers,
+  getUserById,
 };
