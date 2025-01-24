@@ -11,17 +11,25 @@ const userSchema = new Schema({
   },
   email: {
     type: String,
-    required: true,
+    required: [true, "Please enter a valid email address"],
     unique: true,
+    validate: {
+      validator: function (value: string) {
+        return /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/.test(value);
+      },
+      message: `{VALUE} is not a valid email address`,
+    },
   },
   photo: String,
   role: {
     type: String,
-    required: true,
+    enum: { values: ["admin", "user"], message: `{VALUE} is not a valid role` },
+    default: "user",
   },
   userStatus: {
-    tyle: String,
-    required: true,
+    type: String,
+    enum: ["active", "inactive"],
+    default: "active",
   },
 });
 
