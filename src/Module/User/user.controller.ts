@@ -1,5 +1,3 @@
-//Req and Res manage
-
 import { Request, Response } from "express";
 import { userService } from "./user.service";
 
@@ -49,9 +47,42 @@ const getUserById = async (req: Request, res: Response) => {
     });
   }
 };
+const updateUser = async (req: Request, res: Response) => {
+  try {
+    const data = req.body;
+    const id = req.params.id;
+
+    const result = await userService.updateUser(id, data);
+    res.json({
+      data: result,
+    });
+  } catch (error) {
+    res.json({
+      status: false,
+      message: (error as Error).message,
+    });
+  }
+};
+const deleteUser = async (req: Request, res: Response) => {
+  try {
+    const id = req.params.id;
+
+    const result = await userService.deleteUser(id);
+    res.json({
+      data: result,
+    });
+  } catch (error) {
+    res.json({
+      status: false,
+      message: (error as Error).message,
+    });
+  }
+};
 
 export const userController = {
   createUser,
   getUsers,
   getUserById,
+  updateUser,
+  deleteUser,
 };

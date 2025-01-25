@@ -13,9 +13,19 @@ const getUserById = async (id: string) => {
   const result = await User.findById(id);
   return result;
 };
+const updateUser = async (id: string, payload: IUser) => {
+  const result = await User.findByIdAndUpdate(id, payload);
+  return result;
+};
+const deleteUser = async (id: string) => {
+  const result = await User.findByIdAndDelete(id);
+  return result;
+};
 
 export const userService = {
   createUser,
   getUsers,
   getUserById,
+  updateUser,
+  deleteUser,
 };
