@@ -34,6 +34,12 @@ const userSchema = new Schema<IUser>({
   },
 });
 
+// Middleware Hook pre
+userSchema.pre("find", function (this, next) {
+  this.find({ userStatus: { $eq: "active" } });
+  next();
+});
+
 const User = model<IUser>("User", userSchema);
 
 export default User;

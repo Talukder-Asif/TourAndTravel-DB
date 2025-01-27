@@ -14,7 +14,7 @@ const getUserById = async (id: string) => {
   return result;
 };
 const updateUser = async (id: string, payload: IUser) => {
-  const result = await User.findByIdAndUpdate(id, payload);
+  const result = await User.findByIdAndUpdate(id, payload, { new: true });
   return result;
 };
 const deleteUser = async (id: string) => {
