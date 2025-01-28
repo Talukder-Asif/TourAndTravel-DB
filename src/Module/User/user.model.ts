@@ -40,6 +40,14 @@ userSchema.pre("find", function (this, next) {
   next();
 });
 
+// Middleware Hook post
+userSchema.post("find", function (docs, next) {
+  docs.map((doc: IUser) => {
+    doc.name = doc.name.toUpperCase();
+  });
+  next();
+});
+
 const User = model<IUser>("User", userSchema);
 
 export default User;
