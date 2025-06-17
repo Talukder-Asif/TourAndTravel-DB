@@ -13,6 +13,7 @@ const getTours = async () => {
 
 const getSingleTour = async (id: string) => {
   const result = await Tour.findById(id);
+  console.log(result);
   return result;
 };
 
