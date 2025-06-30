@@ -1,117 +1,117 @@
-import { Request, Response } from 'express'
-import { tourService } from './tour.service'
+import { Request, Response } from "express";
+import { tourService } from "./tour.service";
 
 const createTour = async (req: Request, res: Response) => {
   try {
-    const body = req.body
-    const result = await tourService.createTour(body)
+    const body = req.body;
+    const result = await tourService.createTour(body);
 
     res.send({
       success: true,
-      message: 'Tour created successfully',
+      message: "Tour created successfully",
       result,
-    })
+    });
   } catch (error) {
     res.send({
       success: false,
-      message: 'Something went wrong',
+      message: "Something went wrong",
       error,
-    })
+    });
   }
-}
+};
 
 const getTours = async (req: Request, res: Response) => {
   try {
-    const result = await tourService.getTours()
+    const result = await tourService.getTours(req.params);
 
     res.send({
       success: true,
-      message: 'Tours get successfully',
+      message: "Tours get successfully",
       result,
-    })
+    });
   } catch (error) {
     res.send({
       success: false,
-      message: 'Something went wrong',
+      message: "Something went wrong",
       error,
-    })
+    });
   }
-}
+};
 
 const getSingleTour = async (req: Request, res: Response) => {
   try {
-    const id = req.params.id
-    const result = await tourService.getSingleTour(id)
+    const id = req.params.id;
+    const result = await tourService.getSingleTour(id);
 
     res.send({
       success: true,
-      message: 'Tour get successfully',
+      message: "Tour get successfully",
       result,
-    })
+    });
   } catch (error) {
     res.send({
       success: false,
-      message: 'Something went wrong',
+      message: "Something went wrong",
       error,
-    })
+    });
   }
-}
+};
 
 const updateTour = async (req: Request, res: Response) => {
   try {
-    const id = req.params.id
-    const body = req.body
-    const result = await tourService.updateTour(id, body)
+    const id = req.params.id;
+    const body = req.body;
+    const result = await tourService.updateTour(id, body);
 
     res.send({
       success: true,
-      message: 'Tour updated successfully',
+      message: "Tour updated successfully",
       result,
-    })
+    });
   } catch (error) {
     res.send({
       success: false,
-      message: 'Something went wrong',
+      message: "Something went wrong",
       error,
-    })
+    });
   }
-}
+};
 const deleteTour = async (req: Request, res: Response) => {
   try {
-    const id = req.params.id
-    const result = await tourService.deleteTour(id)
+    const id = req.params.id;
+    const result = await tourService.deleteTour(id);
 
     res.send({
       success: true,
-      message: 'Tour deleted successfully',
+      message: "Tour deleted successfully",
       result,
-    })
+    });
   } catch (error) {
     res.send({
       success: false,
-      message: 'Something went wrong',
+      message: "Something went wrong",
       error,
-    })
+    });
   }
-}
+};
 const getNextSchedule = async (req: Request, res: Response) => {
   try {
-    const id = req.params.id
-    const result = await tourService.getNextSchedule(id)
+    const id = req.params.id;
+    const result = await tourService.getNextSchedule(id);
 
     res.send({
       success: true,
-      message: 'Tour deleted successfully',
+      message: "Tour deleted successfully",
       result,
-    })
+    });
   } catch (error) {
     res.send({
       success: false,
-      message: 'Something went wrong',
+      message: "Something went wrong",
       error,
-    })
+    });
   }
-}
+};
 
 export const tourController = {
   createTour,
@@ -120,4 +120,4 @@ export const tourController = {
   updateTour,
   deleteTour,
   getNextSchedule,
-}
+};
